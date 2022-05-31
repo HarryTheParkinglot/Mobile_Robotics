@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <memory.h>
+#include <windows.h>
+
+int tmp;
+#define swap(a,b) tmp = a, a = b, b = tmp;
+
+int left_dist,right_dist,left_route[10],right_route[10];
+int seq[8] = {1,3,4,5,7,8,9,11};
+
+
+
+//하나의 인덱스에서 왼쪽으로 갈 수 있는 노드, 오른쪽으로 갈 수 있는 노드를 각각 구함 
+int GetIndexInform(int f_idx){
+	while()
+} 

@@ -1,0 +1,54 @@
+
+
+void AimTB(int col, int R, int zp, int xp, int yp){
+	ginit("aimTB");
+	//0 : LEFT
+	//1 : RIGHT
+
+
+	int xpp=  0, ypp = 0, zpp= 0;
+	int x= 0, y=  0, z= 0;
+	while(!Cmd(0,18));
+
+	pc= 0;
+	while(1){
+		if(!gtc)
+		{	
+			gtc = 1;
+
+			int xm[2] = {255,0}, ym[2] = {255,0};
+
+			if(!V1()) {SS(); return;}
+
+			for(int i = 0 ;i < 9 ; i++){
+				if(pro[i][0]!= col) continue;
+				if(xm[0] > pro[i][1]) xm[0] = pro[i][1],ym[0]= pro[i][2]; //min
+				if(xm[1] < pro[i][1]) xm[1] = pro[i][1],ym[1]= pro[i][2]; //max 
+			}
+			lcd_clear_screen(); 
+			lcd(1,2,"%d %d %d",col,xm[0],ym[0]);
+			lcd(2,2,"%d %d %d",col,xm[1],ym[1]);
+			
+			xpp = zpp = xm[R];
+			ypp = ym[R];
+
+
+
+			if(xp) x = (xpp -xp) * 0.8;
+			if(zp) z = (zpp -zp) * 0.6;
+			if(yp) y = (yp -ypp);
+		
+
+			x = LF(30,-30,x);
+			y = LF(55,-55,y);
+			z = LF(50,-50,z);
+		
+
+			speed(x*acf*0.8, y*cacf*0.8 ,z*acf,wa);
+		
+			if(!oc) oc = 1;
+			if(oc > 350 ) {SS();LE return;}
+			if(abs(x) <= 0 && abs(y) <= 1 && abs(z) <= 0) {LE return;}
+		}
+	}
+}
